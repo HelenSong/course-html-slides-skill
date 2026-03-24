@@ -123,31 +123,20 @@ slides/
 
 ## 🎮 Example: Pet Diary Course
 
-> Screenshots from the **"Human Observation Diary from a Pet's Perspective"** PBL course (12 slides)
+> **"Human Observation Diary from a Pet's Perspective"** — PBL course, 12 slides, Fresh Nature style
 
-### Cover · Dark background + floating paw animation
-![Cover](docs/screenshots/p01-cover.png)
+![Slide Collage](docs/collage.png)
 
-### Hook · Three-column pet diary cards
-![Hook](docs/screenshots/p02-hook.png)
-
-### Driving Question · Full-screen gradient + keyword tags
-![Driving Question](docs/screenshots/p03-driving-question.png)
-
-### Project Intro · PBL steps + outcome preview (two-column)
-![Project Intro](docs/screenshots/p04-project-intro.png)
-
-### Role Selection · Clickable pet character cards
-![Role Selection](docs/screenshots/p06-role-guide.png)
-
-### AI Writing Guide · Click-to-Reveal steps + copyable prompt
-![AI Writing Guide](docs/screenshots/p08-writing-guide.png)
-
-### Practice · 15-min timer + phase tracker + checklist
-![Practice](docs/screenshots/p11-practice.png)
-
-### Reflection · Discussion questions + skill summary wall
-![Reflection](docs/screenshots/p12-share.png)
+| Page | Type | Highlights |
+|---|---|---|
+| 01 | Cover | Dark bg + floating paw + gradient title |
+| 02 | Hook | Three-column pet diary cards |
+| 03 | Driving Question | Full-screen green gradient + keyword tags |
+| 04 | Project Intro | PBL 5-step + outcome preview (two-column) |
+| 05 | Role Selection | Clickable pet character cards |
+| 06 | AI Writing Guide | Click-to-Reveal steps + one-click copy prompt |
+| 07 | Practice | 15-min timer + phase tracker + checklist |
+| 08 | Reflection | Discussion questions + skill wall |
 
 ---
 
