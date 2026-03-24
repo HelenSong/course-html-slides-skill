@@ -1,118 +1,119 @@
-# 课程 HTML Slides 构建器
+# Course HTML Slides Builder
 
-> **一个 AI Skill，将课程大纲批量转化为多页独立 HTML 课件**
+> **An AI Skill that turns course outlines into multi-page HTML slide decks**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Skill Type](https://img.shields.io/badge/Type-AI%20Skill-blue.svg)]()
+[![Language](https://img.shields.io/badge/lang-English%20%7C%20中文-brightgreen)](README.zh.md)
+
+**🌐 Language / 语言：** [English](README.md) · [中文](README.zh.md)
 
 ---
 
-## 🌟 这是什么？
+## 🌟 What is this?
 
-这是一个为 **Claude / Antigravity** 设计的 AI Skill，帮助你把课程大纲快速转化为专业级的 HTML 课件 Slides。
+An AI Skill for **Claude / Antigravity** that transforms course outlines into professional HTML slides — no design skills needed.
 
-**三阶段完整流程：**
+**Three-phase workflow:**
 
 ```
-课程大纲  →  [Phase 1] 风格设计  →  [Phase 2] Markdown 设计稿  →  [Phase 3] HTML 生成
+Course Outline  →  [Phase 1] Style Design  →  [Phase 2] Markdown Spec  →  [Phase 3] HTML Generation
 ```
 
-每一页都是独立的 HTML 文件，通过底部导航栏串联，适合课堂投影演示。
+Each slide is an independent HTML file linked by a shared bottom navigation bar. Built for classroom projection.
 
 ---
 
-## ✨ 主要特性
+## ✨ Features
 
-- 🎨 **5 种预设风格** — 暖色教育风、科技冷色风、清新自然风、暗黑极客风、极简雅致风
-- 📝 **8 种页面类型** — 封面、幕间标题、内容页、互动演示、任务指南、实战练习、总结、二维码
-- 🤖 **交互动画内置** — 聊天气泡动画、click-to-reveal、翻转卡片、倒计时器
-- ⌨️ **键盘/触屏翻页** — 左右键、空格键、滑动手势
-- 📱 **响应式设计** — 适配不同分辨率的投影仪和屏幕
+- 🎨 **5 preset style themes** — Warm Education, Cool Tech, Fresh Nature, Dark Geek, Minimal Elegant
+- 📝 **8 page types** — Cover, Section Title, Content, Interactive Demo, Task Guide, Practice, Summary, QR Code
+- 🤖 **Built-in interactions** — Chat bubble typewriter, click-to-reveal, flip cards, countdown timer
+- ⌨️ **Keyboard / touch navigation** — Arrow keys, spacebar, swipe gestures
+- 📱 **Responsive design** — Adapts to projectors and different screen sizes
 
 ---
 
-## 📁 Skill 结构
+## 📁 Skill Structure
 
 ```
 course-html-slides/
-├── SKILL.md                     # 主指令文件（AI 读取）
-├── chat-animation-pattern.md    # 聊天动画实现参考
-├── click-to-reveal-pattern.md   # 渐进揭示实现参考
+├── SKILL.md                     # Main instruction file (read by AI)
+├── chat-animation-pattern.md    # Chat animation reference
+├── click-to-reveal-pattern.md   # Progressive disclosure reference
 └── references/
-    ├── style-presets.md         # 5 个风格预设方案
-    └── design-spec-format.md    # Markdown 设计稿格式规范
+    ├── style-presets.md         # 5 complete style presets
+    └── design-spec-format.md    # Markdown design spec format
 ```
 
 ---
 
-## 🚀 如何使用
+## 🚀 How to Use
 
-### 前提条件
+### Prerequisites
 
-需要使用 [Antigravity](https://antigravity.ai) 或支持 Skill 系统的 Claude 客户端。
+[Antigravity](https://antigravity.ai) or any Claude client that supports the Skill system.
 
-### 安装方法
+### Installation
 
-**全局安装（推荐）：**
+**Global install (recommended):**
 ```bash
-# 克隆到全局 skills 目录
 cd ~/.agents/skills
 git clone https://github.com/HelenSong/course-html-slides-skill.git course-html-slides
 ```
 
-**项目级安装：**
+**Project-level install:**
 ```bash
-# 克隆到项目的 .agents/skills 目录
 cd your-project/.agents/skills
 git clone https://github.com/HelenSong/course-html-slides-skill.git course-html-slides
 ```
 
-### 调用方式
+### How to trigger
 
-安装后，在对话中说：
+After installing, just say:
 
-> "帮我把这个课程大纲做成 HTML 课件"
+> "Help me turn this course outline into HTML slides"
 
-> "我要给'Python 入门课'做 slides，风格要科技感"
+> "I want slides for a Python intro course with a tech vibe"
 
-> "把这个 Markdown 设计稿生成 HTML 文件"
+> "Generate HTML files from this Markdown design spec"
 
 ---
 
-## 📖 工作流程
+## 📖 Workflow
 
-### Phase 1 — 风格设计
+### Phase 1 — Style Design
 
-Skill 会询问你的风格偏好，或者快速选择预设方案：
+The Skill asks about your style preferences or lets you pick a preset:
 
-| 方案 | 适合场景 | 主色 |
+| Preset | Best For | Primary Color |
 |---|---|---|
-| 🍊 暖色教育风 | K12、亲子教育 | 橙 + 蓝 |
-| 🧊 科技冷色风 | STEM、编程、企培 | 靛蓝 + 青 |
-| 🌿 清新自然风 | 生物、手工、户外 | 森林绿 + 琥珀 |
-| 🌙 暗黑极客风 | 技术分享、黑客松 | 深色 + 霓虹 |
-| 🎨 极简雅致风 | 人文、通识、高端企培 | 黑白 + 单色 |
+| 🍊 Warm Education | K12, parent-child education | Orange + Blue |
+| 🧊 Cool Tech | STEM, coding, corporate training | Indigo + Cyan |
+| 🌿 Fresh Nature | Biology, crafts, outdoor education | Forest Green + Amber |
+| 🌙 Dark Geek | Tech talks, hackathons | Dark + Neon |
+| 🎨 Minimal Elegant | Humanities, general education | Black-White + Accent |
 
-输出：`style-guide.md`
+Output: `style-guide.md`
 
-### Phase 2 — Markdown 设计稿
+### Phase 2 — Markdown Design Spec
 
-Skill 将课程大纲转化为逐页的结构化设计文档，每页包含：类型、内容、布局、交互描述。
+The Skill converts your outline into a structured per-page design document covering: page type, content, layout, and interaction.
 
-输出：`design-spec.md`
+Output: `design-spec.md`
 
-### Phase 3 — HTML 生成
+### Phase 3 — HTML Generation
 
-按设计稿批量生成 HTML 文件，同时生成共享的 CSS/JS 设计系统：
+Batch-generates HTML files alongside a shared CSS/JS design system:
 
 ```
 slides/
 ├── styles/
-│   ├── theme.css       # 主题（含品牌色、字号、圆角）
-│   ├── animations.css  # 动画系统
-│   └── components.css  # 可复用组件
+│   ├── theme.css       # Theme (colors, typography, border-radius)
+│   ├── animations.css  # Animation system
+│   └── components.css  # Reusable components
 ├── js/
-│   └── slide-nav.js    # 导航控制器
+│   └── slide-nav.js    # Navigation controller
 ├── p01-cover.html
 ├── p02-*.html
 └── ...
@@ -120,53 +121,53 @@ slides/
 
 ---
 
-## 🎮 示例：宠物日记课件
+## 🎮 Example: Pet Diary Course
 
-> 以下截图来自 **《宠物视角的人类观察日记》** PBL 课程课件（12 页）
+> Screenshots from the **"Human Observation Diary from a Pet's Perspective"** PBL course (12 slides)
 
-### 封面页 · 暗色深底 + 浮动动画
-![封面](docs/screenshots/p01-cover.png)
+### Cover · Dark background + floating paw animation
+![Cover](docs/screenshots/p01-cover.png)
 
-### 钩子页 · 三栏日记卡片 激发共鸣
-![钩子](docs/screenshots/p02-hook.png)
+### Hook · Three-column pet diary cards
+![Hook](docs/screenshots/p02-hook.png)
 
-### 驱动问题页 · 全屏渐变 + 关键词标签
-![驱动问题](docs/screenshots/p03-driving-question.png)
+### Driving Question · Full-screen gradient + keyword tags
+![Driving Question](docs/screenshots/p03-driving-question.png)
 
-### 项目介绍页 · PBL 步骤 + 成品预览双栏
-![项目介绍](docs/screenshots/p04-project-intro.png)
+### Project Intro · PBL steps + outcome preview (two-column)
+![Project Intro](docs/screenshots/p04-project-intro.png)
 
-### 角色选择页 · 可点击宠物卡片（交互演示）
-![角色选择](docs/screenshots/p06-role-guide.png)
+### Role Selection · Clickable pet character cards
+![Role Selection](docs/screenshots/p06-role-guide.png)
 
-### AI 润色指南页 · Click-to-Reveal 步骤 + 可复制提示词
-![AI润色指南](docs/screenshots/p08-writing-guide.png)
+### AI Writing Guide · Click-to-Reveal steps + copyable prompt
+![AI Writing Guide](docs/screenshots/p08-writing-guide.png)
 
-### 实战练习页 · 15 分钟计时器 + 阶段追踪 + 可勾选清单
-![实战练习](docs/screenshots/p11-practice.png)
+### Practice · 15-min timer + phase tracker + checklist
+![Practice](docs/screenshots/p11-practice.png)
 
-### 总结反思页 · 反思问题 + 技能收获墙
-![总结反思](docs/screenshots/p12-share.png)
+### Reflection · Discussion questions + skill summary wall
+![Reflection](docs/screenshots/p12-share.png)
 
 ---
 
-## 🛠 技术规格
+## 🛠 Technical Specs
 
-- **纯 HTML/CSS/JS** — 无框架依赖，可离线运行
-- **CSS 变量驱动** — 主题可通过修改 `theme.css` 中的变量一键切换
-- **所有尺寸用 `clamp()`** — 自适应不同分辨率
-- **满屏不滚动** — 严格限制每页内容量在 `100vh` 内
+- **Pure HTML/CSS/JS** — No framework dependencies, works offline
+- **CSS variable-driven** — Switch themes by editing variables in `theme.css`
+- **All sizes via `clamp()`** — Responsive across different resolutions
+- **No scroll per slide** — Content strictly stays within `100vh`
 
 ---
 
 ## 📄 License
 
-MIT License — 自由使用、修改、分享
+MIT License — Free to use, modify, and share
 
 ---
 
-## 🙏 致谢
+## 🙏 Acknowledgements
 
-- 由 [HelenSong](https://github.com/HelenSong) 创建
-- Skill 系统基于 [Antigravity](https://antigravity.ai)
-- 使用 [skill-creator](https://github.com/anthropics/skills) 方法论构建
+- Created by [HelenSong](https://github.com/HelenSong)
+- Built with [Antigravity](https://antigravity.ai) Skill system
+- Methodology: [skill-creator](https://github.com/anthropics/skills)
