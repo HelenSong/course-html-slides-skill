@@ -122,9 +122,31 @@ slides/
 
 ## 🎮 示例：宠物日记课件
 
+> 以下截图来自 **《宠物视角的人类观察日记》** PBL 课程课件（12 页）
+
+### 封面页 · 暗色深底 + 浮动动画
 ![封面](docs/screenshots/p01-cover.png)
 
-这个 Skill 已被用于生成 **《宠物视角的人类观察日记》** PBL 课程课件（12 页），示例项目见 [`examples/pet-diary/`](examples/pet-diary/)。
+### 钩子页 · 三栏日记卡片 激发共鸣
+![钩子](docs/screenshots/p02-hook.png)
+
+### 驱动问题页 · 全屏渐变 + 关键词标签
+![驱动问题](docs/screenshots/p03-driving-question.png)
+
+### 项目介绍页 · PBL 步骤 + 成品预览双栏
+![项目介绍](docs/screenshots/p04-project-intro.png)
+
+### 角色选择页 · 可点击宠物卡片（交互演示）
+![角色选择](docs/screenshots/p06-role-guide.png)
+
+### AI 润色指南页 · Click-to-Reveal 步骤 + 可复制提示词
+![AI润色指南](docs/screenshots/p08-writing-guide.png)
+
+### 实战练习页 · 15 分钟计时器 + 阶段追踪 + 可勾选清单
+![实战练习](docs/screenshots/p11-practice.png)
+
+### 总结反思页 · 反思问题 + 技能收获墙
+![总结反思](docs/screenshots/p12-share.png)
 
 ---
 
