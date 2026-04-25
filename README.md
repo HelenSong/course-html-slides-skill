@@ -12,25 +12,27 @@
 
 ## 🌟 What is this?
 
-An AI Skill for **Claude / Antigravity** that transforms course outlines into professional HTML slides — no design skills needed.
+An AI Skill for **Claude / Antigravity** that transforms course outlines into professional HTML slides / Web PPT decks — no design skills needed.
 
-**Three-phase workflow:**
+**Four-step workflow:**
 
 ```
-Course Outline  →  [Phase 1] Style Design  →  [Phase 2] Markdown Spec  →  [Phase 3] HTML Generation
+Course Outline → Style Design → Markdown Spec → HTML Generation → Browser Screenshot Verification
 ```
 
-Each slide is an independent HTML file linked by a shared bottom navigation bar. Built for classroom projection.
+Each slide is an independent HTML file linked by a shared bottom navigation bar, side hotzones, keyboard controls, and touch gestures. Built for classroom projection and interactive workshops.
 
 ---
 
 ## ✨ Features
 
 - 🎨 **5 preset style themes** — Warm Education, Cool Tech, Fresh Nature, Dark Geek, Minimal Elegant
-- 📝 **8 page types** — Cover, Section Title, Content, Interactive Demo, Task Guide, Practice, Summary, QR Code
+- 📝 **10+ page types** — Cover, Section Title, Level Transition, Content, Interactive Demo, Vote/Poll, Task Guide, Practice, Summary, QR Code
 - 🤖 **Built-in interactions** — Chat bubble typewriter, click-to-reveal, flip cards, countdown timer
-- ⌨️ **Keyboard / touch navigation** — Arrow keys, spacebar, swipe gestures
+- 🧭 **Required bottom navigation** — Prev/next buttons, page number, section badge, and top progress bar on every slide
+- ⌨️ **Keyboard / touch navigation** — Arrow keys, spacebar, swipe gestures, side hotzones
 - 📱 **Responsive design** — Adapts to projectors and different screen sizes
+- ✅ **Screenshot verification standard** — Checks overflow, nav overlap, icon rendering, and media loading
 
 ---
 
@@ -114,10 +116,20 @@ slides/
 │   └── components.css  # Reusable components
 ├── js/
 │   └── slide-nav.js    # Navigation controller
-├── p01-cover.html
+├── p01-cover.html      # each slide includes bottom navigation
 ├── p02-*.html
 └── ...
 ```
+
+### Phase 4 — Browser Verification
+
+After generation, check key slide screenshots to ensure:
+
+- Bottom navigation and top progress bar are present
+- Main content does not overlap the nav bar
+- Images, videos, and lucide icons render correctly
+- Polls, click-to-reveal, timers, and other interactions have visible feedback
+- Content is clear at 1280×720 / 1280×800 projection sizes
 
 ---
 
@@ -145,7 +157,9 @@ slides/
 - **Pure HTML/CSS/JS** — No framework dependencies, works offline
 - **CSS variable-driven** — Switch themes by editing variables in `theme.css`
 - **All sizes via `clamp()`** — Responsive across different resolutions
-- **No scroll per slide** — Content strictly stays within `100vh`
+- **Required navigation** — Bottom navigation + top progress bar + side hotzones on every slide
+- **No scroll per slide** — Desktop projection content stays within `100vh`
+- **Visual quality baseline** — Every slide needs a clear visual anchor, readable hierarchy, and interaction feedback
 
 ---
 

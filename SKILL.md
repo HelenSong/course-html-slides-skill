@@ -1,15 +1,16 @@
 ---
 name: 课程 HTML Slides 构建器
-description: 批量生成多页独立 HTML 课件 Slides，包含完整的三阶段工作流：配色风格设计 → Markdown 设计稿 → HTML 文件生成。支持封面、幕间标题、内容页、互动演示、任务指南、实战练习等页面类型。每个 slide 是一个独立 HTML 文件，通过共享 CSS/JS 和底部导航栏链接成完整课件流。适用于教学场景的课堂投影演示。当用户提到"课件"、"slides"、"HTML 演示"、"课堂 PPT"、"教学课件"或需要将课程大纲转为可演示的网页时，使用此 skill。
+description: 批量生成多页独立 HTML 课件 Slides / Web PPT，包含完整工作流：配色风格设计 → Markdown 设计稿 → HTML 文件生成 → 浏览器截图验证。支持封面、关卡过渡页、内容页、互动演示、投票页、任务指南、实战练习、总结页等页面类型。每个 slide 是一个独立 HTML 文件，必须通过共享 CSS/JS、左右热区、键盘/触屏支持和底部导航栏链接成完整课件流。适用于课堂投影、训练营、工作坊和可交互网页 PPT。当用户提到"课件"、"web PPT"、"网页 PPT"、"slides"、"HTML 演示"、"课堂 PPT"、"教学课件"或需要将课程大纲转为可演示的网页时，使用此 skill。
 ---
 
 # 课程 HTML Slides 构建器
 
-将课程大纲转化为**多页独立 HTML 文件**形式的课件 Slides。三阶段完整流程：
+将课程大纲转化为**多页独立 HTML 文件**形式的课件 Slides / Web PPT。默认产物要能直接投影、翻页、互动和交付给用户打开。完整流程：
 
 1. **风格设计** — 确定配色、字体、圆角等视觉系统
 2. **Markdown 设计稿** — 将大纲转为逐页结构化设计文档
 3. **HTML 生成** — 按设计稿批量生成独立 HTML 文件
+4. **截图验证** — 用浏览器检查导航、溢出、图片、交互和美观程度
 
 每一页都是可独立打开的 HTML 网页，通过底部导航栏串联为完整的演示流。
 
@@ -21,7 +22,33 @@ description: 批量生成多页独立 HTML 课件 Slides，包含完整的三阶
 2. **共享设计系统** — 所有页面引用同一套 CSS（`styles/theme.css`、`styles/animations.css`、`styles/components.css`）和 JS（`js/slide-nav.js`）
 3. **满屏不滚动** — 每个 slide 适配 `100vh`，内容超出时拆分为多页，绝不允许页内纵向滚动
 4. **教学场景优先** — 为投影仪/大屏设计，字大、对比度高、操作区域大，支持键盘和触屏翻页
-5. **渐进揭示** — 利用 `.reveal` 动画类和 click-to-reveal 交互，支持按教学节奏逐步展示内容
+5. **底部导航栏是硬要求** — 每页都必须有统一的底部导航栏、页码、当前章节 badge、上一页/下一页按钮；封面和结尾也不能省略
+6. **渐进揭示** — 利用 `.reveal` 动画类和 click-to-reveal 交互，支持按教学节奏逐步展示内容
+7. **先做可用体验，再做装饰** — 每一页必须一眼看懂主题、操作和下一步；视觉装饰不能遮挡文本、导航或交互控件
+
+---
+
+## Web PPT 质量基线
+
+生成的页面不能只是“能打开的 HTML”，而要像一套真正可上课的网页 PPT。
+
+### 必须具备
+
+1. **统一底部导航栏**：固定在页面底部，包含上一页、当前章节 badge、`PXX / 总数`、下一页。
+2. **顶部进度条**：每页使用 `calc(当前页/总页数*100%)`，和导航页码一致。
+3. **左右翻页热区**：每页都包含 `slide-hotzone-left/right`，配合 `slide-nav.js` 支持点击、键盘和触屏。
+4. **大屏可读性**：1280×720 或 1280×800 下标题、按钮、卡片文字必须清楚；正文不要低对比灰字堆满页面。
+5. **有视觉主锚点**：封面、关卡页、案例页、任务页必须有一个明显视觉中心，如大标题、大图、路径图、产品截图、视频、流程图或互动面板。
+6. **交互有状态**：投票、点击揭示、计时器、连线游戏等交互要有选中态、完成态或反馈文案。
+7. **截图验证后交付**：生成或修改后，至少检查核心页面的桌面截图；有复杂响应式时再检查手机尺寸。
+
+### 明确避免
+
+- 不要生成纯文字堆叠页、普通卡片网格堆满页、没有主视觉的“文档式 PPT”。
+- 不要让页面主体内容被底部导航栏遮挡。
+- 不要把标签、按钮、说明文字放在会被浮层盖住的位置。
+- 不要使用过多深色页；除非课程风格要求，默认优先浅色高对比页面。
+- 不要在共享 CSS/JS 里塞单页样式；页面专用样式放在当前 HTML 的 `<style>`。
 
 ---
 
@@ -96,8 +123,10 @@ description: 批量生成多页独立 HTML 课件 Slides，包含完整的三阶
 |---|---|---|
 | `cover` | 🎬 | 课程封面、结尾页 |
 | `section-title` | 🔷 | 章节间隔页 |
+| `level-transition` | 🎮 | 闯关/阶段过渡页 |
 | `content` | 📖 | 知识讲解、概念介绍 |
 | `interactive-demo` | 🤖 | 嵌入演示、工具体验 |
+| `vote` | 🗳️ | 课堂投票、选择题、情绪投票 |
 | `task-guide` | 📝 | 操作步骤指引 |
 | `practice` | ⏱ | 动手练习（含计时器） |
 | `summary` | 📊 | 要点回顾、总结 |
@@ -111,6 +140,7 @@ description: 批量生成多页独立 HTML 课件 Slides，包含完整的三阶
 - 类型、背景、布局
 - 具体内容（文字、卡片、列表等）
 - 交互形式（reveal、click-to-reveal、翻转卡片等）
+- 导航信息（上一页、下一页、当前章节 badge、页码）
 - 备注（教学节奏提示）
 
 ### 2.4 用户审核
@@ -192,6 +222,33 @@ slides/
 
 ---
 
+## Phase 4.5: 共享导航系统最低要求
+
+如果项目尚未提供共享 CSS/JS，必须生成可用的导航系统。核心目标：每个 HTML 文件直接打开也能翻页。
+
+### components.css 必须包含
+
+- `.slide-page`：`min-height:100vh; max-height:100vh; display:flex; flex-direction:column; overflow:hidden;`
+- `.slide-body`：`flex:1; padding:var(--slide-pad); overflow:hidden;`
+- `.top-progress`：固定在顶部的进度条，`z-index` 高于主体。
+- `.slide-nav`：底部导航栏，`display:flex; justify-content:space-between; flex-shrink:0; backdrop-filter:blur(...)`。
+- `.slide-nav.dark`：暗色/视频/渐变页的半透明深色导航。
+- `.nav-btn`、`.nav-btn-primary`、`.nav-btn-secondary`、`.nav-btn.disabled`。
+- `.slide-hotzone-left/right` 和 `.hotzone-icon`。
+- `.badge-*`、`.reveal`、`.delay-*` 等基础组件。
+
+### slide-nav.js 必须支持
+
+1. 读取 `#btn-prev` 和 `#btn-next` 的 `href`。
+2. 键盘：`ArrowLeft` / `PageUp` 到上一页，`ArrowRight` / `Space` / `PageDown` 到下一页。
+3. 左右热区点击翻页。
+4. 触屏水平滑动翻页。
+5. 自动为 `.reveal` 元素添加 `.is-visible`。
+6. 提供 `initTimer(elementId,totalSeconds)`，供练习页倒计时调用。
+7. 跳转前忽略 `.disabled` 按钮和 `href="#"`。
+
+---
+
 ## Phase 5: 逐页生成 HTML
 
 ### 5.1 HTML 骨架模板
@@ -208,6 +265,7 @@ slides/
   <link rel="stylesheet" href="styles/theme.css">
   <link rel="stylesheet" href="styles/animations.css">
   <link rel="stylesheet" href="styles/components.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <style>
     /* ===== 本页专用样式 ===== */
   </style>
@@ -231,15 +289,14 @@ slides/
       <!-- 内容在这里 -->
     </div>
 
-    <!-- 底部导航栏 -->
+    <!-- 底部导航栏：每页必备 -->
     <nav class="slide-nav">
       <a id="btn-prev" class="nav-btn nav-btn-secondary" href="上一页.html">
         ← 上一页
       </a>
       <div style="display:flex; align-items:center; gap:var(--gap-sm);">
-        <span class="badge badge-primary">当前部分</span>
+        <span class="badge badge-primary"><i data-lucide="sparkles" style="width:12px;height:12px"></i> 当前部分</span>
         <span class="nav-page-info">PXX / 总数</span>
-        <span class="nav-kbd-hint">← → 键 或 滑动</span>
       </div>
       <a id="btn-next" class="nav-btn nav-btn-primary" href="下一页.html">
         下一页 →
@@ -248,6 +305,7 @@ slides/
 
   </div>
   <script src="js/slide-nav.js"></script>
+  <script>lucide.createIcons();</script>
   <!-- 本页专用脚本（如有） -->
 </body>
 </html>
@@ -262,12 +320,43 @@ slides/
 | 普通内容页 | `bg-cream` |
 | 主色幕间标题 | `bg-primary-grad` |
 | 辅色幕间标题 | `bg-secondary-grad` |
-| 暗色封面/结尾 | `bg-dark` |
+| 少量强氛围页 | `bg-dark` |
 
 在渐变/暗色背景上，导航栏需覆盖半透明暗色样式：
 ```html
-<nav class="slide-nav" style="background:rgba(30,26,24,0.5); border-top-color:rgba(255,255,255,0.15);">
+<nav class="slide-nav dark">
 ```
+
+#### 底部导航栏规范
+
+每页都要有完整导航，不允许省略。导航栏必须：
+
+1. 放在 `.slide-page` 内、`.slide-body` 后。
+2. 使用 `<nav class="slide-nav">`，暗色页使用 `<nav class="slide-nav dark">`。
+3. 上一页链接为 `id="btn-prev"`，下一页链接为 `id="btn-next"`，这样 `slide-nav.js` 才能绑定键盘、热区和滑动。
+4. 第一页上一页按钮添加 `disabled`；最后一页下一页按钮添加 `disabled` 或明确的结束文案。
+5. 中间区域显示当前章节 badge 和 `PXX / 总数`。如果中途插入 `p05b`、`p10a` 等页面，页码显示也要同步。
+6. 视觉验证时检查 `.slide-body` 底部不要压到 `.slide-nav` 顶部。
+
+推荐中间区：
+
+```html
+<div style="display:flex;align-items:center;gap:var(--gap-sm);">
+  <span class="badge badge-primary"><i data-lucide="map" style="width:12px;height:12px"></i> 本章</span>
+  <span class="nav-page-info">P08 / 18</span>
+</div>
+```
+
+#### 美观与清晰度规则
+
+1. **每页一个主视觉**：封面用课程名 + 任务地图/产品截图；关卡页用大数字 + 关卡名；投票页用选择面板；练习页用计时器或工作台。
+2. **内容分层**：标题、导语、主体、收束句四层清楚。不要把所有信息放成同等大小的卡片。
+3. **浅色优先**：常规课件页优先 `bg-cream` 或浅色自定义背景，暗色只用于少量转场或强情绪页。
+4. **卡片要有功能**：卡片用于重复项目、投票、步骤、角色、工具面板；不要把整页拆成无意义卡片墙。
+5. **使用真实资产**：有产品、人物、作品或案例时，优先使用真实截图、图片、视频或已有 `images/` 资源；不要只用抽象图形。
+6. **文字不要压线**：标签、按钮、说明条不要放在浮层底部或导航附近；复杂页面优先用 Playwright 截图检查。
+7. **图标统一**：优先使用 lucide 图标，页面 `<head>` 引入 lucide，末尾调用 `lucide.createIcons()`。
+8. **响应式兜底**：桌面保持满屏不滚动；移动端可用 `@media(max-width:640px){.slide-page{overflow-y:auto;max-height:100vh}}` 作为兜底。
 
 #### 入场动画
 
@@ -305,29 +394,32 @@ padding: 20px;
 
 ### 🎬 封面 (Cover)
 
-结构：全屏背景图 + 居中内容（眉标 + 大标题 + 副标题 + 标签组）
+结构：课程名必须成为第一视觉。推荐“左侧课程标题 + 右侧任务地图/产品截图/主视觉”的浅色封面；只有明确要求时才用暗色全屏背景。
 
 ```html
-<div class="slide-page" style="background:#1a1a2e;">
-  <div class="cover-bg"></div> <!-- 背景图层 -->
-  <div class="cover-content">  <!-- 居中内容 -->
-    <div class="cover-eyebrow reveal delay-1">✨ 眉标文字</div>
-    <h1 class="cover-title reveal delay-2">
-      主标题<br><span class="highlight">渐变色强调词</span>
-    </h1>
-    <p class="cover-subtitle reveal delay-3">副标题说明</p>
-    <div class="cover-tags reveal delay-4">
-      <span class="cover-tag tag-primary">标签1</span>
-      <span class="cover-tag tag-secondary">标签2</span>
+<div class="slide-page bg-cream">
+  <div class="cover-scene"></div>
+  <div class="slide-body">
+    <div class="cover-layout">
+      <section class="cover-copy">
+        <div class="eyebrow reveal delay-1">课程眉标</div>
+        <h1 class="title reveal delay-2">课程主标题<span>强调词</span></h1>
+        <p class="subtitle reveal delay-3">一句话说明这节课会做出什么。</p>
+      </section>
+      <section class="visual-stage reveal delay-3">
+        <!-- 任务地图 / 产品截图 / 课程产出预览 -->
+      </section>
     </div>
   </div>
+  <!-- 必须保留底部导航栏 -->
 </div>
 ```
 
 关键样式：
-- `.cover-bg`：`position:absolute; inset:0; background:url(...) center/cover; filter:brightness(0.55);` + `::after` 渐变蒙版
-- `.highlight`：`background:linear-gradient(...); -webkit-background-clip:text; -webkit-text-fill-color:transparent;`
-- 添加装饰粒子：`.particle` + `float-xy` 动画
+- `.cover-scene`：浅色底 + 轻网格/淡色面，不使用抢眼装饰背景。
+- `.cover-layout`：`display:grid; grid-template-columns:.95fr 1.05fr; align-items:center;`
+- `.title`：主标题足够大，品牌/课程名第一眼可见。
+- `.visual-stage`：放课程产出预览、路径图、产品截图或任务地图，不能只是抽象渐变。
 
 ### 🔷 幕间标题 (Section Title)
 
@@ -351,6 +443,36 @@ padding: 20px;
       <span class="tag">关键词2</span>
     </div>
   </div>
+</div>
+```
+
+### 🎮 关卡过渡页 (Level Transition)
+
+用于训练营、闯关式课程、阶段切换。页面目标是让学生知道“我们进入下一关，要做什么”。
+
+结构：左侧或居中大数字 + 关卡名称，右侧 3-4 个模块/任务卡。适合使用浅色或深色，但导航必须清楚。
+
+```html
+<div class="slide-page bg-cream">
+  <div class="level-bg"></div>
+  <div class="slide-body">
+    <div class="transition-layout">
+      <div class="level-panel reveal delay-1">
+        <div class="level-ring"></div>
+        <div class="level-core">
+          <div class="level-chip">LEVEL 05</div>
+          <div class="level-num">05</div>
+          <div class="level-name">成卡</div>
+        </div>
+      </div>
+      <div class="module-area">
+        <div class="eyebrow reveal delay-2">final output</div>
+        <div class="main-copy reveal delay-2">把想法压成一张产品设计卡。</div>
+        <!-- 模块卡片 / 下一步提示 -->
+      </div>
+    </div>
+  </div>
+  <!-- 底部导航 -->
 </div>
 ```
 
@@ -395,6 +517,20 @@ padding: 20px;
   </div>
 </div>
 ```
+
+### 🗳️ 投票页 (Vote / Poll)
+
+用于课堂选择、情绪投票、方案投票。必须有可点击选项和可见反馈。
+
+推荐结构：
+- 左侧：问题背景、投票规则、金句或教师提示。
+- 右侧：投票卡片、选项按钮、结果条或揭示区。
+
+交互规则：
+1. 选项点击后添加 `.is-picked` / `.is-selected`。
+2. 多选题允许 toggle；单选题点击时清空同组其他选项。
+3. 结果用数字、进度条、揭示文案或高亮态展示。
+4. 交互后页面布局不能跳动压到导航栏。
 
 ### 📝 任务指南 (Task Guide)
 
@@ -447,7 +583,9 @@ padding: 20px;
 
 ### 验证清单
 
-- [ ] 每页在 1280×800 分辨率下无纵向滚动
+- [ ] 每页在 1280×720 或 1280×800 分辨率下无纵向滚动、无横向溢出
+- [ ] 每页都有底部导航栏、顶部进度条和左右热区
+- [ ] 主体内容没有和底部导航栏重叠
 - [ ] 所有 `reveal` 元素正常入场
 - [ ] 前后翻页导航链接正确
 - [ ] 进度条数值准确
@@ -455,8 +593,26 @@ padding: 20px;
 - [ ] 键盘左右键翻页正常
 - [ ] 复制按钮功能正常（如有）
 - [ ] 倒计时器运行正常（如有）
+- [ ] 图片 / 视频资源正常加载，不出现空白占位
+- [ ] lucide 图标正常渲染，没有只显示空白或原始属性
 - [ ] 响应式：在不同屏幕尺寸下布局不崩坏
 - [ ] 配色与 style-guide.md 一致
+
+### 推荐自动检查
+
+生成后优先使用浏览器/Playwright 对关键页面截图并检查：
+
+```js
+const overflow = document.documentElement.scrollWidth > innerWidth + 2 ||
+  document.documentElement.scrollHeight > innerHeight + 2;
+const lucideMissing = [...document.querySelectorAll('[data-lucide]')]
+  .filter(el => !el.querySelector('svg') && el.tagName.toLowerCase() !== 'svg').length;
+const nav = document.querySelector('.slide-nav')?.getBoundingClientRect();
+const body = document.querySelector('.slide-body')?.getBoundingClientRect();
+const navOverlap = nav && body ? body.bottom > nav.top + 2 : false;
+```
+
+如果 `overflow`、`lucideMissing`、`navOverlap` 任一为真，先修复再交付。
 
 ### 交付产物
 
@@ -480,6 +636,8 @@ padding: 20px;
 - 仅在 `<style>` 块中添加本页专用样式
 - 仅在 `<script>` 块中添加本页专用脚本
 - 内容超出时主动拆页，不等用户要求
+- 修改后必须重新检查该页和相邻页导航链接
+- 如果用户说“更好看/美化/重新设计”，不仅换颜色，还要重做信息层级、主视觉和交互反馈
 
 ---
 
@@ -561,6 +719,8 @@ padding: 20px;
 6. ❌ **在共享 CSS/JS 中添加页面专用代码** → 页面专用代码只写在页面内的 `<style>` 和 `<script>` 中
 7. ❌ **跳过风格设计直接生成** → 没有确认配色就生成，后续返工成本极高
 8. ❌ **设计稿和 HTML 不一致** → 生成时严格对照 Markdown 设计稿
+9. ❌ **忘记底部导航栏** → Web PPT 每页都必须能前后翻页
+10. ❌ **只做“漂亮背景”** → 真正的美观来自清晰层级、可读内容、稳定布局和明确交互
 
 ---
 
